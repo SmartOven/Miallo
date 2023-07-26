@@ -11,7 +11,6 @@ const withAuthRedirect = (WrappedComponent: React.ComponentType) => {
         })
         return <WrappedComponent {...props} />;
     };
-
     return WithAuthRedirect;
 };
 

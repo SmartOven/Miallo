@@ -4,11 +4,14 @@ import React from "react";
 // import {darkTheme, lightTheme, Theme} from "../features/themeSlice.ts";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface AsideHeaderProps {
+interface ChatsAsideHeaderProps {
 }
 
-// TODO Добавить меню с чатами и настройками
-const AsideHeader: React.FC<AsideHeaderProps> = () => {
+// Является foldable менюшкой в левой части экрана
+// Занимает 40px в сложенном виде и 25% в разложенном
+// По дефолту разложен (параметр в localStorage)
+
+const ChatsAsideHeader: React.FC<ChatsAsideHeaderProps> = () => {
     // const theme: Theme = useAppSelector((state) => state.theme.theme);
     // const dispatch = useAppDispatch();
 
@@ -38,4 +41,4 @@ const AsideHeader: React.FC<AsideHeaderProps> = () => {
     // );
 };
 
-export default AsideHeader;
+export default ChatsAsideHeader;
