@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 interface RegisterFormProps {
 }
 
-const SignUpForm: React.FC<RegisterFormProps> = () => {
+const SignUpPage: React.FC<RegisterFormProps> = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -46,4 +46,4 @@ const SignUpForm: React.FC<RegisterFormProps> = () => {
     );
 };
 
-export default SignUpForm;
+export default SignUpPage;

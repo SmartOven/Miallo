@@ -3,7 +3,7 @@ import {useAppSelector} from "../features/hooks.ts";
 import App from "./App.tsx";
 import {ThemeProvider} from "@gravity-ui/uikit";
 
-const AppThemeWrapper: React.FC = () => {
+const AppWrapper: React.FC = () => {
     const theme = useAppSelector((state) => state.theme.theme);
     return (
         <ThemeProvider theme={theme}>
@@ -12,4 +12,4 @@ const AppThemeWrapper: React.FC = () => {
     );
 };
 
-export default AppThemeWrapper;
+export default AppWrapper;

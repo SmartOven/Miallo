@@ -5,9 +5,9 @@ import withAuthRedirect from "../components/withAuthRedirect.tsx";
 interface DialogsProps {
 }
 
-const DialogsComponent: React.FC<DialogsProps> = () => {
+const ChatsPageComponent: React.FC<DialogsProps> = () => {
     return (<h1>This is the dialogs page</h1>)
 };
 
-const Dialogs = withAuthRedirect(DialogsComponent);
-export default Dialogs;
+const ChatsPage = withAuthRedirect(ChatsPageComponent);
+export default ChatsPage;
