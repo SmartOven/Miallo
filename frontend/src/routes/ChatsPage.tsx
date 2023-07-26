@@ -6,7 +6,7 @@ interface DialogsProps {
 }
 
 const ChatsPageComponent: React.FC<DialogsProps> = () => {
-    return (<h1>This is the dialogs page</h1>)
+    return (<h1>This is the chats page</h1>)
 };
 
 const ChatsPage = withAuthRedirect(ChatsPageComponent);
