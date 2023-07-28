@@ -2,11 +2,12 @@
 import React from "react";
 import {DrawerItemProps, FooterItem} from "@gravity-ui/navigation";
 import {ReactComponent as settingsIcon} from '../svg/settings-icon.svg'
+import SettingsPanel from "./SettingsPanel.tsx";
 
 export const getSettingsPanelProps = (visible: boolean): DrawerItemProps[] => {
     return [{
         id: 'settings-panel',
-        content: <div>Settings panel</div>,
+        content: <SettingsPanel/>,
         visible: visible,
         direction: 'left'
     }]
