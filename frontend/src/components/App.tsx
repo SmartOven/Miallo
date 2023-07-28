@@ -2,7 +2,7 @@ import React from "react";
 import {useAppSelector} from "../features/hooks.ts";
 import {ThemeProvider} from "@gravity-ui/uikit";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import ChatsPage from "../routes/ChatsPage.tsx";
+import MainPage from "../routes/MainPage.tsx";
 import ErrorPage from "../ErrorPage.tsx";
 import SignUpPage from "../routes/SignUpPage.tsx";
 import SignInPage from "../routes/SignInPage.tsx";
@@ -10,7 +10,7 @@ import SignInPage from "../routes/SignInPage.tsx";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <ChatsPage/>,
+        element: <MainPage/>,
         errorElement: <ErrorPage/>,
     },
     {
@@ -20,10 +20,6 @@ const router = createBrowserRouter([
     {
         path: "/sign-in",
         element: <SignInPage/>,
-    },
-    {
-        path: "/settings",
-        element: <div>Settings page</div>
     },
 ]);
 
