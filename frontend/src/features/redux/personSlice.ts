@@ -1,13 +1,13 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface PersonState {
-    personId: string | null;
-    token: string | null;
+    personId: string;
+    token: string;
 }
 
 const initialState: PersonState = {
-    personId: localStorage.getItem("personId"),
-    token: localStorage.getItem("token"),
+    personId: localStorage.getItem("personId") ?? "",
+    token: localStorage.getItem("token") ?? "",
 };
 
 const personSlice = createSlice({

@@ -1,5 +1,3 @@
-import {backendUri} from "./constants.ts";
-
 export enum RequestMethod {
     GET = "GET",
     POST = "POST",
@@ -8,6 +6,7 @@ export enum RequestMethod {
 }
 
 export function executeFetch(
+    backendUri: string,
     uri: string,
     method: RequestMethod,
     body: any = null,

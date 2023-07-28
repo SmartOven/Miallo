@@ -3,7 +3,7 @@ import LoginForm from "../components/LoginForm.tsx";
 import {executeFetch, RequestMethod} from "../features/fetch.ts";
 import {personIdSet, tokenSet} from "../features/redux/personSlice.ts";
 import {useAppDispatch} from "../features/redux/hooks.ts";
-import {LoginResponse} from "../features/constants.ts";
+import {LoginResponse, loginUri} from "../features/constants.ts";
 import {useNavigate} from "react-router-dom";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -15,7 +15,7 @@ const SignUpPage: React.FC<RegisterFormProps> = () => {
     const navigate = useNavigate();
 
     const signUpPerson = (login: string, password: string) => {
-        void executeFetch('/api/sign-up', RequestMethod.POST, {
+        void executeFetch(loginUri, '/api/sign-up', RequestMethod.POST, {
             login,
             password,
         }).then(async response => {
