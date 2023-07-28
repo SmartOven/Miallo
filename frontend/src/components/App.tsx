@@ -1,5 +1,5 @@
 import React from "react";
-import {useAppSelector} from "../features/hooks.ts";
+import {useAppSelector} from "../features/redux/hooks.ts";
 import {ThemeProvider} from "@gravity-ui/uikit";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import MainPage from "../routes/MainPage.tsx";

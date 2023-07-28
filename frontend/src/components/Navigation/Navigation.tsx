@@ -1,9 +1,9 @@
 import React from "react";
 import {AsideHeader, MenuItem} from "@gravity-ui/navigation";
-import {asideHeaderLogo} from "../features/constants.ts";
-import {useAppDispatch, useAppSelector} from "../features/hooks.ts";
-import {switchCompact, switchVisibility} from "../features/appSlice.ts";
-import {getSettingsPanelProps, getRenderAsideHeaderFooter} from "./asideHeaderUtils.tsx";
+import {asideHeaderLogo} from "../../features/constants.ts";
+import {useAppDispatch, useAppSelector} from "../../features/redux/hooks.ts";
+import {switchCompact, switchVisibility} from "../../features/redux/appSlice.ts";
+import {getRenderAsideHeaderFooter, getSettingsPanelProps} from "./navigationUtils.tsx";
 
 interface AsideHeaderWrapperProps {
     active: 'settings' | 'chats'

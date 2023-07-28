@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 export enum Theme {
     DARK = 'dark',
@@ -36,5 +36,5 @@ const themeSlice = createSlice({
     },
 });
 
-export const { darkTheme, lightTheme } = themeSlice.actions;
+export const {darkTheme, lightTheme} = themeSlice.actions;
 export default themeSlice.reducer;

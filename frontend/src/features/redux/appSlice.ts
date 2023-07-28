@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {localStorageGetBoolean} from "./constants.ts";
+import {localStorageGetBoolean} from "../constants.ts";
 
 interface AppState {
     asideHeaderCompact: boolean;

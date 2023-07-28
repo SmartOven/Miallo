@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import themeReducer from './themeSlice.ts';
 import personReducer from './personSlice.ts';
 import appReducer from './appSlice.ts';

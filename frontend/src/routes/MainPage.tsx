@@ -1,9 +1,9 @@
 import React from "react";
 import withAuthRedirect from "../components/withAuthRedirect.tsx";
-import Navigation from "../components/Navigation.tsx";
+import Navigation from "../components/Navigation/Navigation.tsx";
 
 const MainPageComponent: React.FC = () => {
-    return(<div>
+    return (<div>
         <Navigation
             active='chats'
             items={[]}

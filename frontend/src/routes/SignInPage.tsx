@@ -1,9 +1,9 @@
 import React from 'react';
 import LoginForm from "../components/LoginForm.tsx";
-import {useAppDispatch} from "../features/hooks.ts";
+import {useAppDispatch} from "../features/redux/hooks.ts";
 import {executeFetch, RequestMethod} from "../features/fetch.ts";
 import {LoginResponse} from "../features/constants.ts";
-import {personIdSet, tokenSet} from "../features/personSlice.ts";
+import {personIdSet, tokenSet} from "../features/redux/personSlice.ts";
 import {useNavigate} from "react-router-dom";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

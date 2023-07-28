@@ -1,7 +1,7 @@
 import React from "react";
 import {Switch} from "@gravity-ui/uikit";
-import {useAppDispatch, useAppSelector} from "../features/hooks.ts";
-import {darkTheme, lightTheme, Theme} from "../features/themeSlice.ts";
+import {useAppDispatch, useAppSelector} from "../../features/redux/hooks.ts";
+import {darkTheme, lightTheme, Theme} from "../../features/redux/themeSlice.ts";
 
 const ThemeSwitcher: React.FC = () => {
     const theme: Theme = useAppSelector((state) => state.theme.theme);

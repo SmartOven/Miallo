@@ -1,8 +1,8 @@
 import React from 'react';
 import LoginForm from "../components/LoginForm.tsx";
 import {executeFetch, RequestMethod} from "../features/fetch.ts";
-import {personIdSet, tokenSet} from "../features/personSlice.ts";
-import {useAppDispatch} from "../features/hooks.ts";
+import {personIdSet, tokenSet} from "../features/redux/personSlice.ts";
+import {useAppDispatch} from "../features/redux/hooks.ts";
 import {LoginResponse} from "../features/constants.ts";
 import {useNavigate} from "react-router-dom";
 

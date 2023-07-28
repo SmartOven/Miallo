@@ -1,8 +1,8 @@
 /// <reference types="vite-plugin-svgr/client" />
 import React from "react";
 import {DrawerItemProps, FooterItem} from "@gravity-ui/navigation";
-import {ReactComponent as settingsIcon} from '../svg/settings-icon.svg'
-import SettingsPanel from "./SettingsPanel.tsx";
+import {ReactComponent as settingsIcon} from '../../svg/settings-icon.svg'
+import SettingsPanel from "../Settings/SettingsPanel.tsx";
 
 export const getSettingsPanelProps = (visible: boolean): DrawerItemProps[] => {
     return [{
