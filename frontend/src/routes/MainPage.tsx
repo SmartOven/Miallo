@@ -4,42 +4,25 @@ import Navigation from "../components/Navigation/Navigation.tsx";
 import {executeFetch, RequestMethod} from "../features/fetch.ts";
 import {MenuItem} from "@gravity-ui/navigation";
 import {ReactComponent as personalChatIcon} from "../svg/user-icon.svg";
+import {ReactComponent as groupChatIcon} from "../svg/chats-icon.svg";
 import {useAppSelector} from "../features/redux/hooks.ts";
 
-interface PersonalChat {
+interface Chat {
+    chatId: string;
     title: string;
-    ownerPersonId: string;
-    participantPersonId: string;
+    type: 'PERSONAL' | 'GROUP';
+    changedAt: number;
 }
 
-interface GroupChat {
-    title: string;
-    ownerPersonId: string;
-    membersPersonIds: string[];
-}
-
-interface ChatsResponse {
-    personalChats: PersonalChat[];
-    groupChats: GroupChat[];
-}
-
-const chatsToItems = (chats: ChatsResponse): MenuItem[] => {
-    const personalChats: MenuItem[] = chats.personalChats.map((chat, index) => {
+const chatsToItems = (chats: Chat[]): MenuItem[] => {
+    return chats.map(chat => {
         return {
-            id: 'personal-chat-' + String(index),
+            id: chat.chatId,
             title: chat.title,
-            icon: personalChatIcon
+            icon: chat.type === 'PERSONAL' ? personalChatIcon : groupChatIcon,
+            onItemClick: (item) => {console.log(item)} // TODO Заменить открытием самого чата
         };
     });
-    const groupChats: MenuItem[] = chats.groupChats.map((chat, index) => {
-        const item: MenuItem = {
-            id: 'group-chat-' + String(index),
-            title: chat.title,
-            icon: personalChatIcon
-        }
-        return item;
-    });
-    return [...personalChats, ...groupChats];
 }
 
 const MainPageComponent: React.FC = () => {
@@ -47,18 +30,16 @@ const MainPageComponent: React.FC = () => {
     const personId = useAppSelector((state) => state.person.personId);
 
     const fetchChats = () => {
-        console.log(personId)
         void executeFetch(
-            '/api/chats/list?personId=' + personId,
+            '/api/chat/findAll?personId=' + personId,
             RequestMethod.GET,
         ).then(async response => {
             if (!response.ok) {
                 console.error("Couldn't fetch chats")
                 return;
             }
-            const chatsResponse = await response.json() as ChatsResponse;
+            const chatsResponse = await response.json() as Chat[];
             console.log("Successfully fetched chats")
-            console.log(chatsResponse)
             setChatsItems(chatsToItems(chatsResponse))
         })
     }

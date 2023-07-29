@@ -38,10 +38,7 @@ public class LoginService {
         String personId = credentialsEntity.getPersonId();
         String login = credentialsEntity.getLogin();
         log.info("Registered person: login={}, personId={}", login, personId);
-        PersonDto personDto = new PersonDto();
-        personDto.setNickname(login);
-        personDto.setName(login);
-        personService.create(personDto);
+        personService.create(new PersonDto(personId, "", login, login, ""));
         return personWebTokenService.createOrUpdateIfExists(personId);
     }
 

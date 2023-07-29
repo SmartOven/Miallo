@@ -47,7 +47,7 @@ public class PersonalChatService {
         return personalChatRepository.findByChatId(personalChatInfo.getChatId()).map(personalChatDocument -> new Chat(
                 personalChatDocument.getChatId(),
                 getPersonalChatTitle(personalChatInfo, personId),
-                ChatType.GROUP,
+                ChatType.PERSONAL,
                 personalChatDocument.getChangedAt()
         ));
     }

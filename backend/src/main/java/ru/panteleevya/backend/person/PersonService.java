@@ -11,23 +11,19 @@ public class PersonService {
     private final PersonRepository personRepository;
     private final PersonValidator personValidator;
     private final PersonMapper personMapper;
-    private final PersonIdProvider personIdProvider;
 
     public PersonService(
             PersonRepository personRepository,
             PersonValidator personValidator,
-            PersonMapper personMapper,
-            PersonIdProvider personIdProvider
+            PersonMapper personMapper
     ) {
         this.personRepository = personRepository;
         this.personValidator = personValidator;
         this.personMapper = personMapper;
-        this.personIdProvider = personIdProvider;
     }
 
     public PersonDocument create(PersonDto personDto) {
         PersonDocument personDocument = personMapper.toPersonDocument(personDto);
-        personDocument.setPersonId(personIdProvider.createPersonId());
         personValidator.validateCreate(personDocument);
         return personRepository.save(personDocument);
     }

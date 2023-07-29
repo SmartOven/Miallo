@@ -13,6 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonDto {
+    private String personId;
     private String surname = "";
     private String name;
     private String nickname;

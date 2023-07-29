@@ -9,7 +9,7 @@ import java.util.Collections;
 public class PersonMapper {
     public PersonDocument toPersonDocument(PersonDto personDto) {
         return new PersonDocument(
-                null,
+                personDto.getPersonId(),
                 personDto.getSurname(),
                 personDto.getName(),
                 personDto.getNickname(),
