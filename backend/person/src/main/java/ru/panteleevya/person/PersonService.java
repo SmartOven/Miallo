@@ -9,20 +9,25 @@ public class PersonService {
     private final PersonRepository personRepository;
     private final PersonValidator personValidator;
     private final PersonMapper personMapper;
+    private final PersonIdProvider personIdProvider;
 
     public PersonService(
             PersonRepository personRepository,
             PersonValidator personValidator,
-            PersonMapper personMapper
+            PersonMapper personMapper,
+            PersonIdProvider personIdProvider
     ) {
         this.personRepository = personRepository;
         this.personValidator = personValidator;
         this.personMapper = personMapper;
+        this.personIdProvider = personIdProvider;
     }
 
-    public void create(Person person) {
-        personValidator.validateCreate(person);
-        personRepository.save(personMapper.toPersonEntity(person));
+    public PersonDocument create(Person person) {
+        PersonDocument personDocument = personMapper.toPersonDocument(person);
+        personDocument.setPersonId(personIdProvider.createPersonId());
+        personValidator.validateCreate(personDocument);
+        return personRepository.save(personDocument);
     }
 
     public Optional<Person> findByPersonId(String personId) {

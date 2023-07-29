@@ -1,4 +1,4 @@
-package ru.panteleevya.alias;
+package ru.panteleevya.person;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Alias {
-    private String personId;
     private String aliasedPersonId;
     private String aliasedSurname;
     private String aliasedName;

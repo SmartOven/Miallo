@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.panteleevya.groupchats.GroupChat;
-import ru.panteleevya.personalchats.PersonalChat;
 
 import java.util.List;
 
@@ -13,7 +11,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonChats {
-    private List<PersonalChat> personalChats;
-    private List<GroupChat> groupChats;
+public class FindChatsRequest {
+    private List<String> chatIds;
 }
