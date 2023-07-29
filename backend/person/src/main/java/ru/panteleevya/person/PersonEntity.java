@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.panteleevya.alias.PersonAliasEntity;
-
-import java.util.List;
 
 @Entity
 @Table(name = "persons")
@@ -34,8 +31,4 @@ public class PersonEntity {
 
     @Column(name = "bio")
     private String bio;
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id")
-    private List<PersonAliasEntity> aliases;
 }

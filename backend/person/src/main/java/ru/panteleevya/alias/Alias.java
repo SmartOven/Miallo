@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonAlias {
+public class Alias {
     private String personId;
     private String aliasedPersonId;
     private String aliasedSurname;
