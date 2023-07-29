@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from "../components/LoginForm.tsx";
 import {useAppDispatch} from "../features/redux/hooks.ts";
 import {executeFetch, RequestMethod} from "../features/fetch.ts";
-import {LoginResponse, loginUri} from "../features/constants.ts";
+import {LoginResponse} from "../features/constants.ts";
 import {personIdSet, tokenSet} from "../features/redux/personSlice.ts";
 import {useNavigate} from "react-router-dom";
 
@@ -15,7 +15,7 @@ const SignInPage: React.FC<RegisterFormProps> = () => {
     const navigate = useNavigate();
 
     const signInPerson = (login: string, password: string) => {
-        void executeFetch(loginUri, '/api/sign-in/credentials', RequestMethod.POST, {
+        void executeFetch('/api/login/sign-in/credentials', RequestMethod.POST, {
             login,
             password,
         }).then(async response => {

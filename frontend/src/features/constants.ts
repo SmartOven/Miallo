@@ -1,7 +1,6 @@
 import {LogoProps} from "@gravity-ui/navigation";
 import logoIcon from '../svg/black-cat-icon.svg';
 
-export const loginUri = 'http://localhost:8081'
 export const backendUri = 'http://localhost:8080'
 
 export interface LoginResponse {
