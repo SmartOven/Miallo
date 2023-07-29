@@ -4,7 +4,7 @@ import Navigation from "../components/Navigation/Navigation.tsx";
 import {executeFetch, RequestMethod} from "../features/fetch.ts";
 import {MenuItem} from "@gravity-ui/navigation";
 import {ReactComponent as personalChatIcon} from "../svg/user-icon.svg";
-import {personUri} from "../features/constants.ts";
+import {backendUri} from "../features/constants.ts";
 import {useAppSelector} from "../features/redux/hooks.ts";
 
 interface PersonalChat {
@@ -50,7 +50,7 @@ const MainPageComponent: React.FC = () => {
     const fetchChats = () => {
         console.log(personId)
         void executeFetch(
-            personUri,
+            backendUri,
             '/api/chats/list?personId=' + personId,
             RequestMethod.GET,
         ).then(async response => {

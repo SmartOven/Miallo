@@ -1,4 +1,4 @@
-package ru.panteleevya.login.model.credentials;
+package ru.panteleevya.login.credentials;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

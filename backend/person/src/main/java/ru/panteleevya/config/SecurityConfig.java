@@ -22,7 +22,7 @@ public class SecurityConfig {
                 .and()
                 .csrf().disable().headers().frameOptions().disable()
                 .and()
-                .authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest().permitAll())
+                .authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated())
                 .build();
     }
 }

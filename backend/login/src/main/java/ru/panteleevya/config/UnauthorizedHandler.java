@@ -1,4 +1,4 @@
-package ru.panteleevya.login.config;
+package ru.panteleevya.config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

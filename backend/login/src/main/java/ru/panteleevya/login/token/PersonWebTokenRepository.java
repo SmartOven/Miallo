@@ -1,4 +1,4 @@
-package ru.panteleevya.login.model.token;
+package ru.panteleevya.login.token;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

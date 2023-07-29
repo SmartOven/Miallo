@@ -1,4 +1,4 @@
-package ru.panteleevya.login.model.credentials;
+package ru.panteleevya.login.credentials;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

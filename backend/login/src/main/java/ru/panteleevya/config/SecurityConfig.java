@@ -1,4 +1,4 @@
-package ru.panteleevya.login.config;
+package ru.panteleevya.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

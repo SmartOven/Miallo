@@ -1,8 +1,8 @@
-package ru.panteleevya.login.model.token;
+package ru.panteleevya.login.token;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import ru.panteleevya.login.JwtProvider;
+import ru.panteleevya.JwtProvider;
 
 import java.time.Instant;
 import java.util.Optional;

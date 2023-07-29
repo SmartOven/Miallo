@@ -1,4 +1,4 @@
-package ru.panteleevya.login.model.credentials;
+package ru.panteleevya.login.credentials;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

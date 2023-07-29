@@ -1,4 +1,4 @@
-package ru.panteleevya.login.model.credentials;
+package ru.panteleevya.login.credentials;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

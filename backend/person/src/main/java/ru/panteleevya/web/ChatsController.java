@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/chats")
+@RequestMapping("/api/chat")
 public class ChatsController {
     private final ChatService chatService;
 
@@ -20,8 +20,8 @@ public class ChatsController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ChatDocument> create(@RequestBody Chat chat) {
-        ChatDocument chatDocument = chatService.create(chat);
+    public ResponseEntity<ChatDocument> create(@RequestParam String personId, @RequestBody Chat chat) {
+        ChatDocument chatDocument = chatService.create(chat, personId);
         return ResponseEntity.ok(chatDocument);
     }
 

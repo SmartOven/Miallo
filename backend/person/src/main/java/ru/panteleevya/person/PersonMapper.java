@@ -10,9 +10,10 @@ public class PersonMapper {
     public PersonDocument toPersonDocument(Person person) {
         Set<Alias> aliases = person.getAliases();
         Set<String> chatIds = person.getChatIds();
+        String surname = person.getSurname();
         return new PersonDocument(
                 null,
-                person.getSurname(),
+                surname == null ? "" : surname,
                 person.getName(),
                 person.getNickname(),
                 person.getBio(),

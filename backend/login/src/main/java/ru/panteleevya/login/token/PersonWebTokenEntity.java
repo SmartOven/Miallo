@@ -1,4 +1,4 @@
-package ru.panteleevya.login.model.token;
+package ru.panteleevya.login.token;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

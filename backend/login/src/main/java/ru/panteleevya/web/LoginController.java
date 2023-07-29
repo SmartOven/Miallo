@@ -1,14 +1,14 @@
-package ru.panteleevya.login.web;
+package ru.panteleevya.web;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.panteleevya.login.LoginService;
-import ru.panteleevya.login.model.credentials.PersonCredentials;
-import ru.panteleevya.login.model.token.PersonWebToken;
-import ru.panteleevya.login.model.token.TokenWrapper;
+import ru.panteleevya.LoginService;
+import ru.panteleevya.login.credentials.PersonCredentials;
+import ru.panteleevya.login.token.PersonWebToken;
+import ru.panteleevya.login.token.TokenWrapper;
 
 @RestController
 @RequestMapping("/api/")

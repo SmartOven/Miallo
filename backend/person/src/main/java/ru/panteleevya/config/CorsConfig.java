@@ -16,7 +16,7 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // Установите домен, с которого разрешены запросы (в вашем случае http://localhost:5173)
-        config.setAllowedOrigins(List.of("http://localhost:5173"));
+        config.setAllowedOrigins(List.of("http://localhost:8081"));
 
         // Установите разрешенные HTTP методы (например, GET, POST, PUT, DELETE)
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));

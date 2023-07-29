@@ -1,4 +1,4 @@
-package ru.panteleevya.login;
+package ru.panteleevya;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

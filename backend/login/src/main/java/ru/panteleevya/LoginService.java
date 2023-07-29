@@ -1,14 +1,14 @@
-package ru.panteleevya.login;
+package ru.panteleevya;
 
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.panteleevya.login.model.credentials.PersonCredentials;
-import ru.panteleevya.login.model.credentials.PersonCredentialsEntity;
-import ru.panteleevya.login.model.credentials.PersonCredentialsService;
-import ru.panteleevya.login.model.token.PersonWebToken;
-import ru.panteleevya.login.model.token.PersonWebTokenService;
-import ru.panteleevya.login.model.token.TokenExpiredException;
+import ru.panteleevya.login.credentials.PersonCredentials;
+import ru.panteleevya.login.credentials.PersonCredentialsEntity;
+import ru.panteleevya.login.credentials.PersonCredentialsService;
+import ru.panteleevya.login.token.PersonWebToken;
+import ru.panteleevya.login.token.PersonWebTokenService;
+import ru.panteleevya.login.token.TokenExpiredException;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
