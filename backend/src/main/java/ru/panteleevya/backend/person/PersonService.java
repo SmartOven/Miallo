@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.panteleevya.backend.person.web.PersonDto;
 import ru.panteleevya.backend.person.web.PersonInfo;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,10 @@ public class PersonService {
 
     public Optional<Person> findByPersonId(String personId) {
         return personRepository.findByPersonId(personId).map(personMapper::toPerson);
+    }
+
+    public Optional<Person> findByNickname(String nickname) {
+        return personRepository.findByNickname(nickname).map(personMapper::toPerson);
     }
 
     public Person getByPersonId(String personId) {
@@ -63,7 +68,7 @@ public class PersonService {
         personRepository.save(personDocument);
     }
 
-//    public Optional<Person> findByNameOrSurnameOrNickname(String query) {
-//        return personRepository.findByNameOrSurnameOrNickname(query, query, query).map(personMapper::toPerson);
-//    }
+    public List<Person> findByQuery(String query) {
+        return personRepository.findByQuery(query).stream().map(personMapper::toPerson).toList();
+    }
 }

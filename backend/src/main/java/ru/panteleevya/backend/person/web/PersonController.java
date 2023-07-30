@@ -6,6 +6,7 @@ import ru.panteleevya.backend.person.Person;
 import ru.panteleevya.backend.person.PersonDocument;
 import ru.panteleevya.backend.person.PersonService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -36,6 +37,15 @@ public class PersonController {
     }
 
     /**
+     * Поиск данных о пользователе при открытии чата с ним
+     */
+    @GetMapping("/findByNickname")
+    public ResponseEntity<Person> findByNickname(@RequestParam String nickname) {
+        Optional<Person> personOptional = personService.findByNickname(nickname);
+        return personOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    /**
      * Обновление данных о пользователе: имя, фамилия, никнейм, био
      */
     @PutMapping("/updateInfo")
@@ -43,9 +53,11 @@ public class PersonController {
         return ResponseEntity.ok(personService.updateInfo(personId, personInfo));
     }
 
-//    @GetMapping("/search")
-//    public ResponseEntity<Person> search(@RequestParam String query) {
-//        Optional<Person> personOptional = personService.findByNameOrSurnameOrNickname(query);
-//        return personOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-//    }
+    /**
+     * Поиск пользователей по их name/surname/nickname
+     */
+    @GetMapping("/search")
+    public ResponseEntity<List<Person>> search(@RequestParam String query) {
+        return ResponseEntity.ok(personService.findByQuery(query));
+    }
 }
