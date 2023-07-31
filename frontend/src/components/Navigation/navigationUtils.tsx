@@ -2,6 +2,7 @@
 import React from "react";
 import {DrawerItemProps, FooterItem} from "@gravity-ui/navigation";
 import {ReactComponent as settingsIcon} from '../../svg/settings-icon.svg'
+import {ReactComponent as newChatIcon} from '../../svg/write-icon.svg'
 import SettingsPanel from "../Settings/SettingsPanel.tsx";
 
 export const getSettingsPanelProps = (visible: boolean): DrawerItemProps[] => {
@@ -13,13 +14,27 @@ export const getSettingsPanelProps = (visible: boolean): DrawerItemProps[] => {
     }]
 }
 
-export const getRenderAsideHeaderFooter = (onSettingsClick: () => void) => {
+export const getRenderAsideHeaderFooter = (
+    onNewChatClick: () => void,
+    onSettingsClick: () => void,
+) => {
     return (data: {
         size: number,
         compact: boolean,
         asideRef: React.RefObject<HTMLDivElement>,
     }) => {
-        return (<>
+        return (<div>
+            <FooterItem
+                compact={data.compact}
+                item={{
+                    id: 'new-chat',
+                    title: 'New chat',
+                    onItemClick: onNewChatClick,
+                    icon: newChatIcon,
+                    iconSize: 26,
+                    type: 'action',
+                }}
+            />
             <FooterItem
                 compact={data.compact}
                 item={{
@@ -28,8 +43,9 @@ export const getRenderAsideHeaderFooter = (onSettingsClick: () => void) => {
                     onItemClick: onSettingsClick,
                     icon: settingsIcon,
                     iconSize: 26,
+                    type: 'action',
                 }}
             />
-        </>);
+        </div>);
     }
 }

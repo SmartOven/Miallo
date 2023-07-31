@@ -1,0 +1,32 @@
+.chat-content-grid {
+    display: grid;
+    grid-template-rows: auto fit-content(100%);
+}
+
+.messages-div {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-row-gap: 4px;
+    overflow: scroll;
+    width: 100%;
+}
+
+.chat-message {
+    width: 100%;
+    background-color: darkseagreen;
+}
+
+.owning-message {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.not-owning-message {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.write-message-form {
+    display: grid;
+    grid-template-columns: auto fit-content(100%);
+}

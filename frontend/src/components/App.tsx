@@ -6,12 +6,21 @@ import MainPage from "../routes/MainPage.tsx";
 import ErrorPage from "../ErrorPage.tsx";
 import SignUpPage from "../routes/SignUpPage.tsx";
 import SignInPage from "../routes/SignInPage.tsx";
+import ChatContent from "./ChatContent.tsx";
+import {chatContentLoader} from "../features/loaders.ts";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainPage/>,
         errorElement: <ErrorPage/>,
+        children: [
+            {
+                path: ":chatId",
+                element: <ChatContent/>,
+                loader: chatContentLoader,
+            },
+        ],
     },
     {
         path: "/sign-up",

@@ -35,9 +35,9 @@ const LoginForm: React.FC<LoginFormProps> = ({title, buttonText, onSubmit}) => {
                     </div>
                     <div className="reg-div" style={{marginBottom: '8px'}}>
                         <TextInput
-                            id="login"
+                            id="sign-in-login-text-input"
                             name="login"
-                            placeholder="LoginForm"
+                            placeholder="Login"
                             size="l"
                             value={login}
                             onChange={onChange}
@@ -46,7 +46,7 @@ const LoginForm: React.FC<LoginFormProps> = ({title, buttonText, onSubmit}) => {
                     </div>
                     <div className="reg-div" style={{marginBottom: '8px'}}>
                         <TextInput
-                            id="password"
+                            id="sign-in-password-text-input"
                             name="password"
                             placeholder="Password"
                             size="l"

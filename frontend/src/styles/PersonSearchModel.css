@@ -1,0 +1,15 @@
+.modal-div {
+    width: fit-content(100%);
+    height: fit-content(100%);
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: auto fit-content(100%);
+}
+
+.empty-persons-result {
+    font-style: italic;
+    color: grey;
+    text-align: center;
+}
