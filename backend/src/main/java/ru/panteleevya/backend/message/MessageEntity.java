@@ -23,7 +23,7 @@ public class MessageEntity {
     @Column(name = "author_person_id", nullable = false, updatable = false)
     private String authorPersonId;
 
-    @Column(name = "text", nullable = false)
+    @Column(name = "text", nullable = false, length = 10000)
     private String text;
 
     @Column(name = "timestamp", nullable = false)

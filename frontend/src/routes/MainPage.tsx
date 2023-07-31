@@ -8,6 +8,7 @@ import {ReactComponent as groupChatIcon} from "../svg/chats-icon.svg";
 import {useAppSelector} from "../features/redux/hooks.ts";
 import NewChatModal from "../components/NewChatModal.tsx";
 import {Outlet, useNavigate} from "react-router-dom";
+import "../styles/MainPage.css"
 
 interface Chat {
     chatId: string;
@@ -42,7 +43,6 @@ const MainPageComponent: React.FC = () => {
                 return;
             }
             const chatsResponse = await response.json() as Chat[];
-            console.log("Successfully fetched chats")
             setChatsItems(chatsToItems(chatsResponse))
         })
     }
@@ -56,7 +56,7 @@ const MainPageComponent: React.FC = () => {
             active='chats'
             items={chatsItems}
         >
-            <div id="content">
+            <div id="content" className="content-div">
                 <Outlet />
             </div>
         </Navigation>
