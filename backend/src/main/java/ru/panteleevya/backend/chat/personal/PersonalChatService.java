@@ -30,6 +30,8 @@ public class PersonalChatService {
         Long timestamp = Instant.now().toEpochMilli();
         PersonalChatDocument personalChatDocument = new PersonalChatDocument(
                 chatId,
+                personalChatDto.getPersonId(),
+                personalChatDto.getOtherPersonId(),
                 timestamp
         );
         String personId = personalChatDto.getPersonId();

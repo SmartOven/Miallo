@@ -23,3 +23,14 @@ export interface Person {
     personalChats: PersonalChatInfo[];
     groupChats: GroupChatInfo[];
 }
+
+export const nullPerson: Person = {
+    personId: "",
+    surname: "",
+    name: "",
+    nickname: "",
+    bio: "",
+    aliases: [],
+    personalChats: [],
+    groupChats: [],
+}

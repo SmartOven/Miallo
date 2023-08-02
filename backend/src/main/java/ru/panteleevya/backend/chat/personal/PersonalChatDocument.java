@@ -15,5 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class PersonalChatDocument {
     @Id
     private String chatId;
+    private String personId;
+    private String otherPersonId;
     private Long changedAt;
 }

@@ -2,6 +2,8 @@ package ru.panteleevya.backend.person.web;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.panteleevya.backend.chat.personal.PersonalChatDocument;
+import ru.panteleevya.backend.chat.personal.PersonalChatService;
 import ru.panteleevya.backend.person.Person;
 import ru.panteleevya.backend.person.PersonDocument;
 import ru.panteleevya.backend.person.PersonService;
@@ -13,9 +15,11 @@ import java.util.Optional;
 @RequestMapping("/api/person")
 public class PersonController {
     private final PersonService personService;
+    private final PersonalChatService personalChatService;
 
-    public PersonController(PersonService personService) {
+    public PersonController(PersonService personService, PersonalChatService personalChatService) {
         this.personService = personService;
+        this.personalChatService = personalChatService;
     }
 
     /**
@@ -42,6 +46,23 @@ public class PersonController {
     @GetMapping("/findByNickname")
     public ResponseEntity<Person> findByNickname(@RequestParam String nickname) {
         Optional<Person> personOptional = personService.findByNickname(nickname);
+        return personOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    /**
+     * Поиск данных о пользователе с использованием chatId и personId
+     */
+    @GetMapping("/findByChat")
+    public ResponseEntity<Person> findByChat(@RequestParam String chatId, @RequestParam String otherPersonId) {
+        Optional<PersonalChatDocument> personalChatDocumentOptional = personalChatService.findByChatId(chatId);
+        if (personalChatDocumentOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        PersonalChatDocument personalChatDocument = personalChatDocumentOptional.get();
+        String personId = otherPersonId.equals(personalChatDocument.getOtherPersonId())
+                ? personalChatDocument.getPersonId()
+                : personalChatDocument.getOtherPersonId();
+        Optional<Person> personOptional = personService.findByPersonId(personId);
         return personOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

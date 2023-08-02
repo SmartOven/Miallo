@@ -9,10 +9,21 @@ import {FooterItem} from "@gravity-ui/navigation";
 import {ReactComponent as userIcon} from "../svg/user-icon.svg";
 import {useNavigate} from "react-router-dom";
 
+interface PersonalChatDto {
+    personId: string;
+    otherPersonId: string;
+}
+
+interface PersonalChatDocument {
+    chatId: string;
+    changedAt: number;
+}
+
 const NewChatModal: React.FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const isOpen = useAppSelector((state) => state.app.personSearchModalOpen);
+    const personId = useAppSelector((state) => state.person.personId);
     const [query, setQuery] = useState('');
     const [lastQuery, setLastQuery] = useState('');
     const [foundPersons, setFoundPersons] = useState<Person[]>([]);
@@ -32,10 +43,21 @@ const NewChatModal: React.FC = () => {
 
     // FIXME сделать норм создание чата со стартовым "Привет!"
     const createChat = (person: Person) => {
-        const chatId = "new-chat-id"
-        console.log("Creating new chat with chatId=" + chatId + " and person nickname=" + person.nickname)
-        dispatch(switchPersonSearchModalOpen())
-        navigate('/' + chatId)
+        const personalChatInfo: PersonalChatDto = {
+            personId: personId,
+            otherPersonId: person.personId,
+        }
+        void executeFetch('/api/chat/personal/create', RequestMethod.POST, personalChatInfo).then(async response => {
+            if (!response.ok) {
+                console.error("Couldn't create chat with a person")
+                return;
+            }
+            const createdChat = await response.json() as PersonalChatDocument;
+            const chatId = createdChat.chatId;
+            console.log("Creating new chat with chatId=" + chatId + " and person nickname=" + person.nickname)
+            dispatch(switchPersonSearchModalOpen())
+            navigate('/' + chatId)
+        })
     }
 
     const onClose = () => {
