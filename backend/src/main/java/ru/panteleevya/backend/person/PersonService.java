@@ -46,7 +46,7 @@ public class PersonService {
 
     public Person updateInfo(String personId, PersonInfo personInfo) {
         personValidator.validateUpdate(personId, personInfo);
-        PersonDocument personDocument = personRepository.findByPersonId(personId).get();
+        PersonDocument personDocument = personRepository.findByPersonId(personId).orElseThrow();
         personDocument.setSurname(personInfo.getSurname());
         personDocument.setName(personInfo.getName());
         personDocument.setNickname(personInfo.getNickname());
