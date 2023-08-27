@@ -5,14 +5,15 @@ import {switchCompact, switchPersonSearchModalOpen, switchVisibility} from "../.
 import {getRenderAsideHeaderFooter, getSettingsPanelProps} from "./navigationUtils.tsx";
 import logoIcon from '../../svg/black-cat-icon.svg';
 import {useNavigate} from "react-router-dom";
+import {removePersonAndToken} from "../../features/redux/personSlice.ts";
 
-interface AsideHeaderWrapperProps {
+interface NavigationProps {
     active: 'settings' | 'chats'
     items: MenuItem[];
     children: React.ReactElement
 }
 
-const Navigation: React.FC<AsideHeaderWrapperProps> = (props) => {
+const Navigation: React.FC<NavigationProps> = (props) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const isCompact = useAppSelector((state) => state.app.asideHeaderCompact);
@@ -27,6 +28,11 @@ const Navigation: React.FC<AsideHeaderWrapperProps> = (props) => {
         onClick: () => navigate('/')
     }
 
+    const logOut = () => {
+        dispatch(removePersonAndToken())
+        navigate("/log-in")
+    }
+
     return (<AsideHeader
         compact={isCompact}
         logo={asideHeaderLogo}
@@ -37,6 +43,7 @@ const Navigation: React.FC<AsideHeaderWrapperProps> = (props) => {
         renderFooter={getRenderAsideHeaderFooter(
             () => dispatch(switchPersonSearchModalOpen()),
             () => dispatch(switchVisibility()),
+            logOut,
         )}
     />);
 };

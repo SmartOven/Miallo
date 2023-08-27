@@ -86,7 +86,7 @@ const ChatContent: React.FC = () => {
                         data={userIcon}
                         size={32}
                     />
-                    <div>
+                    <div className="person-info-grid">
                         <div>
                             {person.name + " " + person.surname}
                         </div>

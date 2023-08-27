@@ -1,0 +1,17 @@
+.login-form-div {
+    width: fit-content;
+    height: fit-content;
+}
+
+.card-div {
+    margin: 1em;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: fit-content(100%) auto fit-content(100%);
+}
+
+.button-div {
+    width: 80px;
+}

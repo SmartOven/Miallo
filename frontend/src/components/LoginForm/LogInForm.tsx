@@ -1,15 +1,18 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {Button, Card, TextInput} from '@gravity-ui/uikit';
+import "./LogInForm.css"
+import {useNavigate} from "react-router-dom";
 
 interface LoginFormProps {
     title: string;
-    buttonText: string;
+    type: 'log-in' | 'sign-up';
     onSubmit: (login: string, password: string) => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({title, buttonText, onSubmit}) => {
+const LogInForm: React.FC<LoginFormProps> = ({title, type, onSubmit}) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
@@ -27,15 +30,15 @@ const LoginForm: React.FC<LoginFormProps> = ({title, buttonText, onSubmit}) => {
     };
 
     return (
-        <div style={{width: 'fit-content', height: 'fit-content'}}>
+        <div className="login-form-div">
             <Card className="card-stories">
-                <div className="card-content-stories" style={{margin: '1em'}}>
-                    <div className="reg-div" style={{marginRight: '80px'}}>
+                <div className="card-div card-content-stories">
+                    <div style={{marginRight: '80px'}}>
                         <h1>{title}</h1>
                     </div>
-                    <div className="reg-div" style={{marginBottom: '8px'}}>
+                    <div style={{marginBottom: '8px'}}>
                         <TextInput
-                            id="sign-in-login-text-input"
+                            id="login-text-input"
                             name="login"
                             placeholder="Login"
                             size="l"
@@ -44,9 +47,9 @@ const LoginForm: React.FC<LoginFormProps> = ({title, buttonText, onSubmit}) => {
                             onKeyDown={onSubmitByKeyDown}
                         />
                     </div>
-                    <div className="reg-div" style={{marginBottom: '8px'}}>
+                    <div style={{marginBottom: '8px'}}>
                         <TextInput
-                            id="sign-in-password-text-input"
+                            id="password-text-input"
                             name="password"
                             placeholder="Password"
                             size="l"
@@ -56,14 +59,27 @@ const LoginForm: React.FC<LoginFormProps> = ({title, buttonText, onSubmit}) => {
                             onKeyDown={onSubmitByKeyDown}
                         />
                     </div>
-                    <div className="reg-div">
+                    <div className="button-grid">
                         <Button
+                            className="button-div"
                             view="action"
                             size="l"
                             type="submit"
                             onClick={() => onSubmit(login, password)}
                         >
-                            {buttonText}
+                            {type === 'log-in' ? "Log in" : "Sign up"}
+                        </Button>
+                        <div>
+                            {/* Dummy element for using space */}
+                        </div>
+                        <Button
+                            className="button-div"
+                            view="outlined-info"
+                            size="l"
+                            type="submit"
+                            onClick={() => navigate(type === 'log-in' ? "/sign-up" : "/log-in")}
+                        >
+                            {type === 'log-in' ? "Sign up" : "Log in"}
                         </Button>
                     </div>
                 </div>
@@ -72,4 +88,4 @@ const LoginForm: React.FC<LoginFormProps> = ({title, buttonText, onSubmit}) => {
     );
 };
 
-export default LoginForm;
+export default LogInForm;

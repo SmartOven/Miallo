@@ -7,9 +7,9 @@ import java.time.Instant;
 
 @Service
 public class MessageMapper {
-    public MessageEntity toMessageEntity(MessageDto messageDto) {
+    public MessageDocument toMessageEntity(MessageDto messageDto) {
         Long timestamp = Instant.now().toEpochMilli();
-        return new MessageEntity(
+        return new MessageDocument(
                 null,
                 messageDto.getChatId(),
                 messageDto.getAuthorPersonId(),
@@ -18,12 +18,12 @@ public class MessageMapper {
         );
     }
 
-    public Message toMessage(MessageEntity messageEntity) {
+    public Message toMessage(MessageDocument messageDocument) {
         return new Message(
-                messageEntity.getChatId(),
-                messageEntity.getAuthorPersonId(),
-                messageEntity.getText(),
-                messageEntity.getTimestamp()
+                messageDocument.getChatId(),
+                messageDocument.getAuthorPersonId(),
+                messageDocument.getText(),
+                messageDocument.getTimestamp()
         );
     }
 }
