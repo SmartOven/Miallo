@@ -65,3 +65,9 @@
     display: grid;
     grid-template-columns: auto fit-content(100%);
 }
+
+.person-info-grid {
+    display: grid;
+    grid-template-columns: fit-content(100%) fit-content(100%);
+    grid-column-gap: 4px;
+}
