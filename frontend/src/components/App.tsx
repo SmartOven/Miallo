@@ -5,7 +5,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import MainPage from "../routes/MainPage.tsx";
 import ErrorPage from "../ErrorPage.tsx";
 import SignUpPage from "../routes/SignUpPage.tsx";
-import SignInPage from "../routes/SignInPage.tsx";
+import LogInPage from "../routes/LogInPage.tsx";
 import ChatContent from "./ChatContent.tsx";
 import {chatContentLoader} from "../features/loaders.ts";
 
@@ -27,8 +27,8 @@ const router = createBrowserRouter([
         element: <SignUpPage/>,
     },
     {
-        path: "/sign-in",
-        element: <SignInPage/>,
+        path: "/log-in",
+        element: <LogInPage/>,
     },
 ]);
 

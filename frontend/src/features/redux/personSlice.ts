@@ -22,8 +22,14 @@ const personSlice = createSlice({
             state.token = action.payload;
             localStorage.setItem("token", state.token);
         },
+        removePersonAndToken(state) {
+            state.personId = "";
+            state.token = "";
+            localStorage.removeItem("personId")
+            localStorage.removeItem("token")
+        }
     },
 });
 
-export const {personIdSet, tokenSet} = personSlice.actions;
+export const {personIdSet, tokenSet, removePersonAndToken} = personSlice.actions;
 export default personSlice.reducer;

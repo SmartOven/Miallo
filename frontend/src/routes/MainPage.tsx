@@ -34,6 +34,9 @@ const MainPageComponent: React.FC = () => {
     }
 
     const fetchChats = () => {
+        if (personId == "") {
+            return;
+        }
         void executeFetch(
             '/api/chat/findAll?personId=' + personId,
             RequestMethod.GET,

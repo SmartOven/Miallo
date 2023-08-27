@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginForm from "../components/LoginForm.tsx";
+import LogInForm, {LoginType} from "../components/LoginForm/LogInForm.tsx";
 import {useAppDispatch} from "../features/redux/hooks.ts";
 import {executeFetch, RequestMethod} from "../features/fetch.ts";
 import {LoginResponse} from "../features/constants.ts";
@@ -10,11 +10,11 @@ import {useNavigate} from "react-router-dom";
 interface RegisterFormProps {
 }
 
-const SignInPage: React.FC<RegisterFormProps> = () => {
+const LogInPage: React.FC<RegisterFormProps> = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const signInPerson = (login: string, password: string) => {
+    const logInPerson = (login: string, password: string) => {
         void executeFetch('/api/login/sign-in/credentials', RequestMethod.POST, {
             login,
             password,
@@ -40,10 +40,10 @@ const SignInPage: React.FC<RegisterFormProps> = () => {
                 height: '100%',
                 width: '100%'
             }}>
-                <LoginForm title="Sign in" buttonText="Sign in" onSubmit={signInPerson}/>
+                <LogInForm title="Log in" type={LoginType.LOG_IN} onSubmit={logInPerson}/>
             </div>
         </div>
     );
 };
 
-export default SignInPage;
+export default LogInPage;
