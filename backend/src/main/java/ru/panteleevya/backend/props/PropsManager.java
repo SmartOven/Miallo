@@ -20,6 +20,8 @@ public class PropsManager {
         }
         log.info("Environment is {}. Using variables from secret.", env);
         downloadAndSet(oauthToken, secretId); // using variables from secret
+        System.setProperty("javax.net.ssl.trustStore", "/home/panteleevya/.mongodb");
+        System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
     }
 
     private static void downloadAndSet(String oauthToken, String secretId) {
