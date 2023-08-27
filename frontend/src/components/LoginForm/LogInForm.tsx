@@ -3,14 +3,9 @@ import {Button, Card, TextInput} from '@gravity-ui/uikit';
 import "./LogInForm.css"
 import {useNavigate} from "react-router-dom";
 
-export enum LoginType {
-    LOG_IN,
-    SIGN_UP,
-}
-
 interface LoginFormProps {
     title: string;
-    type: LoginType;
+    type: 'log-in' | 'sign-up';
     onSubmit: (login: string, password: string) => void;
 }
 
@@ -72,7 +67,7 @@ const LogInForm: React.FC<LoginFormProps> = ({title, type, onSubmit}) => {
                             type="submit"
                             onClick={() => onSubmit(login, password)}
                         >
-                            {type === LoginType.LOG_IN ? "Log in" : "Sign up"}
+                            {type === 'log-in' ? "Log in" : "Sign up"}
                         </Button>
                         <div>
                             {/* Dummy element for using space */}
@@ -82,9 +77,9 @@ const LogInForm: React.FC<LoginFormProps> = ({title, type, onSubmit}) => {
                             view="outlined-info"
                             size="l"
                             type="submit"
-                            onClick={() => navigate(type === LoginType.LOG_IN ? "/sign-up" : "/log-in")}
+                            onClick={() => navigate(type === 'log-in' ? "/sign-up" : "/log-in")}
                         >
-                            {type === LoginType.LOG_IN ? "Sign up" : "Log in"}
+                            {type === 'log-in' ? "Sign up" : "Log in"}
                         </Button>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import LogInForm, {LoginType} from "../components/LoginForm/LogInForm.tsx";
+import LogInForm from "../components/LoginForm/LogInForm.tsx";
 import {executeFetch, RequestMethod} from "../features/fetch.ts";
 import {personIdSet, tokenSet} from "../features/redux/personSlice.ts";
 import {useAppDispatch} from "../features/redux/hooks.ts";
@@ -40,7 +40,7 @@ const SignUpPage: React.FC<RegisterFormProps> = () => {
                 height: '100%',
                 width: '100%'
             }}>
-                <LogInForm title="Sign up" type={LoginType.SIGN_UP} onSubmit={signUpPerson}/>
+                <LogInForm title="Sign up" type='sign-up' onSubmit={signUpPerson}/>
             </div>
         </div>
     );

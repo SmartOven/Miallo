@@ -1,5 +1,5 @@
 import React from 'react';
-import LogInForm, {LoginType} from "../components/LoginForm/LogInForm.tsx";
+import LogInForm from "../components/LoginForm/LogInForm.tsx";
 import {useAppDispatch} from "../features/redux/hooks.ts";
 import {executeFetch, RequestMethod} from "../features/fetch.ts";
 import {LoginResponse} from "../features/constants.ts";
@@ -40,7 +40,7 @@ const LogInPage: React.FC<RegisterFormProps> = () => {
                 height: '100%',
                 width: '100%'
             }}>
-                <LogInForm title="Log in" type={LoginType.LOG_IN} onSubmit={logInPerson}/>
+                <LogInForm title="Log in" type='log-in' onSubmit={logInPerson}/>
             </div>
         </div>
     );
