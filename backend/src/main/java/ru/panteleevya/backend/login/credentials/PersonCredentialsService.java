@@ -20,39 +20,39 @@ public class PersonCredentialsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Optional<PersonCredentialsEntity> findByLoginAndPassword(String login, String password) {
-        Optional<PersonCredentialsEntity> entityOptional = personCredentialsRepository.findByLogin(login);
+    public Optional<PersonCredentialsDocument> findByLoginAndPassword(String login, String password) {
+        Optional<PersonCredentialsDocument> entityOptional = personCredentialsRepository.findByLogin(login);
         if (entityOptional.isEmpty()) {
             return Optional.empty();
         }
-        PersonCredentialsEntity personCredentialsEntity = entityOptional.get();
+        PersonCredentialsDocument personCredentialsDocument = entityOptional.get();
         String encodedPassword = passwordEncoder.encode(password);
         if (!passwordEncoder.matches(password, encodedPassword)) {
             return Optional.empty();
         }
-        return Optional.of(personCredentialsEntity);
+        return Optional.of(personCredentialsDocument);
     }
 
-    public PersonCredentialsEntity create(PersonCredentials personCredentials) {
+    public PersonCredentialsDocument create(PersonCredentials personCredentials) {
         String login = personCredentials.getLogin();
         if (personCredentialsRepository.existsByLogin(login)) {
             throw new IllegalArgumentException(String.format("Person credentials with login=%s already exists", login));
         }
         String personId = UUID.randomUUID().toString();
         String encodedPassword = passwordEncoder.encode(personCredentials.getPassword());
-        return personCredentialsRepository.save(new PersonCredentialsEntity(null, personId, login, encodedPassword));
+        return personCredentialsRepository.save(new PersonCredentialsDocument(null, personId, login, encodedPassword));
     }
 
-    public PersonCredentialsEntity updatePassword(Long id, String password) {
+    public PersonCredentialsDocument updatePassword(Long id, String password) {
         String encodedPassword = passwordEncoder.encode(password);
-        PersonCredentialsEntity personCredentialsEntity = personCredentialsRepository.findById(id)
+        PersonCredentialsDocument personCredentialsDocument = personCredentialsRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException(String.format("Person credentials with id=%s doesn't exist", id)));
-        personCredentialsEntity.setPassword(encodedPassword);
-        return personCredentialsRepository.save(personCredentialsEntity);
+        personCredentialsDocument.setPassword(encodedPassword);
+        return personCredentialsRepository.save(personCredentialsDocument);
     }
 
     public void delete(String login, String password) {
-        Optional<PersonCredentialsEntity> entityOptional = findByLoginAndPassword(login, password);
+        Optional<PersonCredentialsDocument> entityOptional = findByLoginAndPassword(login, password);
         if (entityOptional.isEmpty()) {
             return;
         }

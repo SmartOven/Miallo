@@ -23,40 +23,40 @@ public class PersonWebTokenService {
     }
 
     public Optional<PersonWebToken> findNotExpiredByToken(String token) {
-        Optional<PersonWebTokenEntity> entityOptional = personWebTokenRepository.findByToken(token);
+        Optional<PersonWebTokenDocument> entityOptional = personWebTokenRepository.findByToken(token);
         if (entityOptional.isEmpty()) {
             return Optional.empty();
         }
-        PersonWebTokenEntity personWebTokenEntity = entityOptional.get();
-        if (isExpired(personWebTokenEntity)) {
+        PersonWebTokenDocument personWebTokenDocument = entityOptional.get();
+        if (isExpired(personWebTokenDocument)) {
             return Optional.empty();
         }
-        return Optional.of(new PersonWebToken(personWebTokenEntity.getPersonId(), token));
+        return Optional.of(new PersonWebToken(personWebTokenDocument.getPersonId(), token));
     }
 
     public Optional<PersonWebToken> findNotExpiredByPersonId(String personId) {
-        Optional<PersonWebTokenEntity> entityOptional = personWebTokenRepository.findByPersonId(personId);
+        Optional<PersonWebTokenDocument> entityOptional = personWebTokenRepository.findByPersonId(personId);
         if (entityOptional.isEmpty()) {
             return Optional.empty();
         }
-        PersonWebTokenEntity personWebTokenEntity = entityOptional.get();
-        if (isExpired(personWebTokenEntity)) {
+        PersonWebTokenDocument personWebTokenDocument = entityOptional.get();
+        if (isExpired(personWebTokenDocument)) {
             return Optional.empty();
         }
-        return Optional.of(new PersonWebToken(personId, personWebTokenEntity.getToken()));
+        return Optional.of(new PersonWebToken(personId, personWebTokenDocument.getToken()));
     }
 
     public PersonWebToken createOrUpdateIfExists(String personId) {
         long expirationAtMillis = Instant.now().toEpochMilli() + tokenExpirationTimeMillis;
         String token = jwtProvider.createJwtString(personId, expirationAtMillis);
-        Long id = personWebTokenRepository.findByPersonId(personId)
-                .map(PersonWebTokenEntity::getId)
+        String id = personWebTokenRepository.findByPersonId(personId)
+                .map(PersonWebTokenDocument::getId)
                 .orElse(null);
-        personWebTokenRepository.save(new PersonWebTokenEntity(id, personId, token, expirationAtMillis));
+        personWebTokenRepository.save(new PersonWebTokenDocument(id, personId, token, expirationAtMillis));
         return new PersonWebToken(personId, token);
     }
 
-    private boolean isExpired(PersonWebTokenEntity personWebTokenEntity) {
-        return Instant.now().toEpochMilli() > personWebTokenEntity.getExpiringAtMillis();
+    private boolean isExpired(PersonWebTokenDocument personWebTokenDocument) {
+        return Instant.now().toEpochMilli() > personWebTokenDocument.getExpiringAtMillis();
     }
 }

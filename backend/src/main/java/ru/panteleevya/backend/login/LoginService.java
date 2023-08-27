@@ -1,10 +1,9 @@
 package ru.panteleevya.backend.login;
 
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.panteleevya.backend.login.credentials.PersonCredentials;
-import ru.panteleevya.backend.login.credentials.PersonCredentialsEntity;
+import ru.panteleevya.backend.login.credentials.PersonCredentialsDocument;
 import ru.panteleevya.backend.login.credentials.PersonCredentialsService;
 import ru.panteleevya.backend.login.token.PersonWebToken;
 import ru.panteleevya.backend.login.token.PersonWebTokenService;
@@ -32,9 +31,8 @@ public class LoginService {
         this.personWebTokenService = personWebTokenService;
     }
 
-    @Transactional
     public PersonWebToken signUp(PersonCredentials personCredentials) {
-        PersonCredentialsEntity credentialsEntity = personCredentialsService.create(personCredentials);
+        PersonCredentialsDocument credentialsEntity = personCredentialsService.create(personCredentials);
         String personId = credentialsEntity.getPersonId();
         String login = credentialsEntity.getLogin();
         log.info("Registered person: login={}, personId={}", login, personId);
@@ -52,9 +50,9 @@ public class LoginService {
     public PersonWebToken signIn(PersonCredentials personCredentials) {
         String login = personCredentials.getLogin();
         String password = personCredentials.getPassword();
-        PersonCredentialsEntity personCredentialsEntity = personCredentialsService.findByLoginAndPassword(login, password)
+        PersonCredentialsDocument personCredentialsDocument = personCredentialsService.findByLoginAndPassword(login, password)
                 .orElseThrow(() -> new NoSuchElementException(String.format("Person with login=%s doesn't exist or password is incorrect", login)));
-        String personId = personCredentialsEntity.getPersonId();
+        String personId = personCredentialsDocument.getPersonId();
         Optional<PersonWebToken> personWebTokenOptional = personWebTokenService.findNotExpiredByPersonId(personId);
         log.info("Authorized person with personId={} by credentials", personId);
         return personWebTokenOptional.orElseGet(() -> personWebTokenService.createOrUpdateIfExists(personId));

@@ -16,12 +16,12 @@ public class MessageService {
     }
 
     public Message create(MessageDto messageDto) {
-        MessageEntity messageEntity = messageMapper.toMessageEntity(messageDto);
-        MessageEntity savedMessageEntity = messageRepository.save(messageEntity);
-        return messageMapper.toMessage(savedMessageEntity);
+        MessageDocument messageDocument = messageMapper.toMessageEntity(messageDto);
+        MessageDocument savedMessageDocument = messageRepository.save(messageDocument);
+        return messageMapper.toMessage(savedMessageDocument);
     }
 
     public List<Message> findLast100MessagesByChatId(String chatId) {
-        return messageRepository.findLast100MessagesByChatId(chatId).stream().map(messageMapper::toMessage).toList();
+        return messageRepository.findTop100ByChatIdOrderByTimestampDesc(chatId).stream().map(messageMapper::toMessage).toList();
     }
 }

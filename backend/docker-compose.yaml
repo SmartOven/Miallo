@@ -1,21 +1,11 @@
 version: '3.8'
 services:
-  login-db:
-    image: postgres:latest
-    container_name: login-db-container
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 12345
-      POSTGRES_DB: login
-    ports:
-      - "5001:5432"
-  person-db:
+  miallo-db:
     image: mongo
-    container_name: person-db-container
+    container_name: miallo-db-container
     restart: unless-stopped
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_USERNAME=panteleevya
       - MONGO_INITDB_ROOT_PASSWORD=12345
     ports:
-      - "27017:27017"
+      - "27018:27017"
