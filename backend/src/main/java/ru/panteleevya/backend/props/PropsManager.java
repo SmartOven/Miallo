@@ -16,12 +16,12 @@ public class PropsManager {
         String env = System.getenv("environment");
         if (env.equalsIgnoreCase("testing") || env.equalsIgnoreCase("local")) {
             log.info("Environment is {}. Using variables from environment.", env);
-            return; // using variables from environment
+        } else if (env.equalsIgnoreCase("production") || env.equalsIgnoreCase("stable")) {
+            log.info("Environment is {}. Using variables from secret.", env);
+            downloadAndSet(oauthToken, secretId);
+        } else {
+            throw new RuntimeException("Unknown environment type: " + env);
         }
-        log.info("Environment is {}. Using variables from secret.", env);
-        downloadAndSet(oauthToken, secretId); // using variables from secret
-        System.setProperty("javax.net.ssl.trustStore", "/home/panteleevya/.mongodb");
-        System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
     }
 
     private static void downloadAndSet(String oauthToken, String secretId) {
