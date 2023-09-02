@@ -22,11 +22,6 @@ public class PropsManager {
         } else {
             throw new RuntimeException("Unknown environment type: " + env);
         }
-//        log.info("mongodb_uri: {}", System.getenv("mongodb_uri"));
-        String path = System.getenv("cert_path");
-//        log.info("path: {}", path);
-        System.setProperty("javax.net.ssl.keyStore", path);
-        System.setProperty("javax.net.ssl.keyStorePassword", "");
     }
 
     private static void downloadAndSet(String oauthToken, String secretId) {
