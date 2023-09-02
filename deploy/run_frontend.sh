@@ -2,4 +2,4 @@
 
 cd ~/Miallo/frontend
 npm i > ~/logs/miallo/frontend-build.log
-npm run build > ~/logs/miallo/frontend.log
+npm run dev > ~/logs/miallo/frontend.log
