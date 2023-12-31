@@ -1,4 +1,8 @@
-import {backendUri} from "./constants.ts";
+let backendUri = ''
+
+if (window.location.hostname === 'localhost') {
+    backendUri = 'http://localhost:8080';
+}
 
 export enum RequestMethod {
     GET = "GET",
@@ -14,7 +18,6 @@ export function executeFetch(
 ): Promise<Response> {
     return fetch(backendUri + uri, {
         body: body === null ? null : JSON.stringify(body),
-        // credentials: "same-origin",
         headers: [["Content-Type", "application/json"]],
         method,
     });

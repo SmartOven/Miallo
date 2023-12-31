@@ -1,4 +1,9 @@
 #!/bin/bash
 
-bash run_backend.sh
-bash run_frontend.sh
+MIALLO_SECRET_ID=e6qmlvmfill9bahepes0
+PROPERTIES_FILE=lockbox.properties
+
+kill -15 $(cat miallo-backend.pid)
+java -jar properties-fetcher.jar "$YC_OAUTH_TOKEN" "$MIALLO_SECRET_ID" "$PROPERTIES_FILE" > properties-fetcher.log
+java -jar miallo.jar --spring.config.import="$PROPERTIES_FILE" > logs.log &
+echo $! > miallo-backend.pid

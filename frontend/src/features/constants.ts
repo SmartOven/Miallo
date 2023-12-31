@@ -1,5 +1,3 @@
-export const backendUri = 'http://localhost:8080'
-
 export interface LoginResponse {
     personId: string;
     token: string;

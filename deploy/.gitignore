@@ -1,2 +1,5 @@
-.idea
-local/files
+miallo*.jar
+*.log
+*.properties
+*.pid
+local
