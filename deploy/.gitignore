@@ -2,4 +2,5 @@ miallo*.jar
 *.log
 *.properties
 *.pid
-local
+*.js
+docker-compose.yaml
